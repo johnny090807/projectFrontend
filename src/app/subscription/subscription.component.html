@@ -1,0 +1,58 @@
+<article class="panel panel-default">
+    <div class="panel-body" style="color:black">
+        {{ subscription.name }}
+        <div class="tabs">
+            <ul class="nav nav-pills">
+                <li (click)="tab='properties'"><a (click)="tab='properties'" >Gegevens</a></li>
+                <li (click)="tab='auths'"><a (click)="tab='auths'" >Auths</a></li>
+            </ul>
+        </div>
+    </div>
+    <footer class="panel-footer" *ngIf="tab">
+        <div class="properties-tab" *ngIf="tab==='properties'" >
+            <label > Abonnement naam </label>
+            <input style="width: 70%;" [(ngModel)]="subscription.name"/>
+            <br/>
+            <label> Beschrijving </label>
+            <textarea style="resize: none; width: 70%;" [(ngModel)]="subscription.description"></textarea>
+            <br/>
+            <label> Korting </label>
+            <input style="width: 70%;" type="number" [(ngModel)]="subscription.discount"/>
+            <br/><br>
+            <ul class="nav nav-pills red">
+                <li><a class="red" style="float: right;" (click)="onEdit()">Update</a></li>
+                <li><a class="red" style="float: right;" (click)="onDelete()">Verwijder</a></li>
+            </ul>
+        </div>
+    <div class="auths-tab" *ngIf="tab==='auths'" >
+       <ul *ngFor="let auth of auths">
+           <li>
+               {{ auth.userName }}
+               <button
+                   class="pull-right"
+                   *ngIf="checkIfValid(auth.subscriptions, subscription.subscriptionId)"
+                   (click)="removeSubscription(auth)">
+                   Verwijderen
+               </button>
+               <button
+                  class="pull-right"
+                  style="margin-right: 20px;"
+                  *ngIf="!checkIfValid(auth.subscriptions, subscription.subscriptionId)"
+                  (click)="addSubscription(auth)">
+                  Toevoegen
+               </button>
+               <!--<input
+               type="checkbox"
+               name="checkbox_subscription"
+               class="pull-right"
+               [ngModel]="checkIfValid(auth,subscription)"
+               (change)="onAddOrRemoveSubscription(auth, supscription)
+               ">-->
+                <!--*ngIf="!checkIfValid(auth, subscription)"-->
+               <!--<input type="checkbox" name="checkbox_subscription" class="pull-right" [checked]="auth.getSubscriptionById(subscription.subscriptionId)" (change)="onAddOrRemoveSubscription(auth, supscription)">-->
+           </li>
+       </ul>
+    </div>
+    </footer>
+</article>
+<!--[checked]="authService.(subscription.subscriptionId) !== undefined"-->

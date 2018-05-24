@@ -1,0 +1,107 @@
+<article class="panel panel-default">
+    <div class="panel-body" style="color:black">
+        {{ auth.userName  }}
+        <!--<div class="tabs">-->
+            <!--<ul class="nav nav-pills">-->
+                <!--<li (click)="tab='subscription'"><a (click)="tab='subscription'; updateUserSubscriptions(user)">Abonnement</a></li>-->
+                <!--<li (click)="tab='credit'"><a (click)="tab='credit'">Saldo</a></li>-->
+                <!--<li (click)="tab='kaarten'"><a (click)="tab='kaarten'; updateUserIdentifiers(user)" >Kaarten</a></li>-->
+                <!--<li (click)="tab='properties'"><a (click)="tab='properties'; updateUserSubscriptions(user)" >Gegevens</a></li>-->
+            <!--</ul>-->
+        </div>
+        <footer class="panel-footer" style="padding-bottom: 40px;">
+            <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle"  type="button" data-toggle="dropdown">{{bedrijfNaam}}
+            <span class="caret"></span></button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" *ngFor="let bedrijf of bedrijven" (click)="setBedrijf(bedrijf); voegBedrijfToe()" style="cursor: pointer;">{{bedrijf.naam}}</a></li>
+                </ul>
+            </div>
+
+        </footer>
+</article>
+<!--         <div class="pull-right">
+            Saldo: &euro;{{user.credit | Percentage: 0.01}}.-
+        </div> -->
+    <!--</div>-->
+    <!--<footer class="panel-footer" *ngIf="tab">-->
+        <!--<div class="credit-tab" *ngIf="tab==='credit'">-->
+            <!--<div class="credit-value"> Saldo: &euro; {{user.credit | Percentage: 0.01}}.- </div>-->
+            <!--<div class="buttons">-->
+                <!--<div class="dropdown">-->
+                    <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">€{{credit}},- -->
+                    <!--<span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a (click)="credit=5">€5,-</a></li>-->
+                        <!--<li><a (click)="credit=10">€10,-</a></li>-->
+                        <!--<li><a (click)="credit=20">€20,-</a></li>-->
+                        <!--<li><a (click)="credit=50">€50,-</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--&nbsp;-->
+                <!--<button class="btn btn-primary" [disabled]="credit===0" (click)="addCredit()">Toevoegen</button>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="card-tab" *ngIf="tab==='kaarten'">-->
+            <!--<div class="new">-->
+                <!--<div>-->
+                    <!--<input [(ngModel)]="identifierTemplate.nfcId">-->
+                <!--</div>-->
+                <!--<button class="btn btn-primary" (click)="createIdentifier()"> Toevoegen </button>-->
+            <!--</div>-->
+            <!--<br/>-->
+            <!--<br/>-->
+            <!--<div class="current" >-->
+                <!--<div class="card-button"-->
+                     <!--style="background-color: #fff200;-->
+                            <!--color:black"-->
+                    <!--*ngFor="let identifier of user.identifiers">-->
+                    <!--{{identifier.nfcId}} &nbsp;&nbsp; <span (click)="deleteIdentifier(identifier)" style="color:black; font-weight: bold; cursor: pointer;"> X </span>-->
+                <!--</div>-->
+
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="properties-tab" *ngIf="tab==='properties'">-->
+            <!--<label> Voornaam </label>-->
+            <!--<input [(ngModel)]="user.firstName"/>-->
+            <!--<br/>-->
+            <!--<label> Achternaam </label>-->
+            <!--<input [(ngModel)]="user.lastName"/>-->
+            <!--<br/>-->
+            <!--<label> Email </label>-->
+            <!--<input type="email" name="email" [(ngModel)]="user.email" ngModel #email="ngModel"/>-->
+            <!--<br/>-->
+            <!--<label> Saldo </label>-->
+            <!--<input type="number" [(ngModel)]="user.credit"/>-->
+            <!--<br/>-->
+            <!--<label class="subscription-value"> Abonnement: {{ subscription && subscription.name?  subscription.name : 'Geen abonnement' }} </label>-->
+            <!--<br/>-->
+            <!--<ul class="nav nav-pills red">-->
+                <!--<li><a class="red" style="float: right;" (click)="updateUser()">Update</a></li>-->
+                <!--<li><a class="red" style="float: right;" (click)="onDelete()">Verwijder gebruiker</a></li>-->
+                <!--</ul>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;-->
+        <!--</div>-->
+        <!--<div class="config">-->
+
+            <!--<a (click)="onEdit()" style="white-space: nowrap;">Pas aan</a>-->
+            <!--<a (click)="onAddIdentifier(user)">Kaarten</a>-->
+            <!--<a (click)="onDelete()">Verwijder</a>-->
+        <!--</div> &ndash;&gt;-->
+
+        <!--<div class="subscription-tab" *ngIf="tab==='subscription'" >-->
+            <!--<div class="subscription-value"> Abonnement: {{ subscription && subscription.name?  subscription.name : 'Geen abonnement' }} </div>-->
+            <!--<div class="buttons">-->
+                <!--<div class="dropdown">-->
+                    <!--<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ subscription && subscription.name?  subscription.name : 'Geen abonnement' }}-->
+                        <!--<span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+                        <!--<li><a class="dropdown-item" (click)="setSubscription('geen abonnement'); addSubscription()">Geen abonnement</a></li>-->
+                        <!--<li><a class="dropdown-item" *ngFor="let subscription of subscriptions" (click)="setSubscription(subscription); addSubscription()">{{subscription.name}}</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</footer>-->
+<!--</article>-->

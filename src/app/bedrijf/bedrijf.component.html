@@ -1,0 +1,37 @@
+<article class="panel panel-default">
+    <div class="panel-body" >
+        <p *ngIf="Editmode === false">{{bedrijf?.naam}}</p>
+        <input
+                type="text"
+                [(ngModel)]="bedrijf.naam"
+                *ngIf="Editmode===true"
+        >
+    </div>
+    <footer class="panel-footer" >
+        <p *ngIf="Editmode === false">{{bedrijf?.locatie}}</p>
+        <input
+                type="text"
+                [(ngModel)]="bedrijf.locatie"
+                *ngIf="Editmode===true"
+        >
+        <div class="config">
+            <button class="btn btn-primary" (click)="checkErvaringen(bedrijf.ervaringen)">Alle ervaringen</button>
+
+            <a (click)="onEdit()" *ngIf="authService.isAdmin()">Pas aan</a>
+            <a (click)="onDelete()" *ngIf="authService.isAdmin()">Verwijder</a>
+            <a (click)="EditConfirm()" *ngIf="Editmode === true">Confirm</a>
+        </div>
+    </footer>
+</article>
+
+<h4>Ervaringen van de studenten:</h4>
+<div *ngFor="let ervaring of ervaringen" >
+    <div *ngIf="ervaring.rating > 5" class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{ervaring.rating}}!</strong> <p>{{ervaring.description}}</p>
+    </div>
+    <div *ngIf="ervaring.rating < 6" class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>{{ervaring.rating}}?</strong> <p>{{ervaring.description}}</p>
+    </div>
+</div>
